@@ -1,0 +1,8 @@
+{
+  "ENGLISH": "English",
+  "HINDI": "Hindi",
+  "home_welcome_msg": "Welcome to You",
+  "home_avalable_languages": "Available languages",
+  "home_about_app": "About the Application,",
+  "home_i18n_desc": "Internationalization (i18n) in Angular refers to the process of developing applications that can be changed into various languages and regions without requiring code changes.Please use the language switcher to change the application's language."
+}

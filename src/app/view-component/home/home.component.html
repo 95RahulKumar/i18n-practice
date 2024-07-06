@@ -1,0 +1,16 @@
+<div class="m-4 font-semibold">
+  <p class="text-center mt-4 mb-3 text-lg">{{WelcomeMsg|translate}}</p>
+  <div class="max-w-[1200px] p-4 center  bg-green-400 rounded-lg">
+    <p class="text-center text-white ">{{availableLanguages|translate}}</p>
+    <div class="flex mt-4 gap-3">
+      <ng-container *ngFor="let i of languageOptions">
+        <div class="bg-white rounded-md text-green-500   flex max-w-[100px] p-2">
+          <p>{{ i.label | translate }}</p>
+        </div>
+      </ng-container>
+    </div>
+    <p class="text-white mt-3 mb-2">{{aboutTheApp | translate}}</p>
+    <div class="bg-white font-normal mt-4 p-4 rounded-md">
+      <p>{{i18nDes | translate}}</p>
+    </div>
+  </div>

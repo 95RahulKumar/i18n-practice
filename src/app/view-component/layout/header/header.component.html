@@ -1,0 +1,14 @@
+<div class="w-full h-[60px] pl-4 pr-4 bg-zinc-200 flex  flex-1 justify-between items-center">
+  <h2 class=" font-semibold">I18n</h2>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon class="text-green-500">
+      g_translate
+    </mat-icon>
+  </button>
+</div>
+<mat-menu #menu="matMenu">
+  <button (click)="changeLanguage(i)" mat-menu-item *ngFor="let i of languageOptions">
+    <span class="font-semibold">{{ i.label | translate }}</span>
+  </button>
+
+</mat-menu>

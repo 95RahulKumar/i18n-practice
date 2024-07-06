@@ -1,5 +1,7 @@
 # I18n
 
+this project is all about interenationalization of the application
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.9.
 
 ## Development server
