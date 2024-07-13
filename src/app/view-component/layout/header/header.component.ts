@@ -23,7 +23,5 @@ export class HeaderComponent {
     this.cdRef.markForCheck();
     this.translateService.use(language.value);
   }
-  onLangSwitch(e: InputEvent) {
-    // console.log('----------------',e.target. e?.target?.['value']);
-  }
+  onLangSwitch(e: InputEvent) {}
 }

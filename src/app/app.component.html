@@ -1,2 +1,7 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
+<ng-container *ngFor="let user of users">
+  <mat-card appearance="outlined" style="margin:5px 10px;">
+    <mat-card-content>{{user.name}}</mat-card-content>
+  </mat-card>
+</ng-container>

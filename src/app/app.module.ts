@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeComponent } from './view-component/home/home.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MatCardModule } from '@angular/material/card';
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -33,13 +34,14 @@ const I18N_CONFIG = {
     HttpClientModule,
     MatIconModule,
     MatMenuModule,
+    MatCardModule,
     TranslateModule.forRoot(I18N_CONFIG),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [],

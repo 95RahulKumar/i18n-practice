@@ -31,10 +31,10 @@
       }
     }
   ],
-  "dataGroup": [
+  "dataGroups": [
     {
       "name": "post-api",
-      "urls": ["https://jsonplaceholder.typicode.com/users"],
+      "urls": ["https://jsonplaceholder.typicode.com/*"],
       "cacheConfig": {
         "maxSize": 10,
         "maxAge": "1h",
