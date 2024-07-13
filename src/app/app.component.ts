@@ -4,7 +4,7 @@ import { forkJoin, interval, Subscription } from 'rxjs';
 import { ILanguageOption } from './typings/interface';
 import { LanguageService } from './services/language.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { SwUpdate } from '@angular/service-worker';
+import { SwPush, SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +16,16 @@ export class AppComponent implements OnInit {
   users: any = [];
   intervalSource = interval(4 * 60 * 60 * 1000); // every 15 mins
   intervalSubscription!: Subscription;
+  // this is public key in order to
+  private readonly VAPID_PUBLIC_KEY =
+    'BBZykNIIP8FKF8SlWPEI94V39bWJJ-FU_o0KvzGUu9E24OINo22hq3bDHuMbBV6VMwaNtXqhZd4lVPoW3skib38';
   constructor(
     private translateService: TranslateService,
     private lang: LanguageService,
     private http: HttpClient,
     private update: SwUpdate,
-    private zone: NgZone
+    private zone: NgZone,
+    private swPush: SwPush
   ) {
     this.updateClient();
   }
@@ -31,6 +35,13 @@ export class AppComponent implements OnInit {
     this.translateService.setDefaultLang('english');
     this.buildLanguageOptions();
     this.fetchUsers();
+    this.subscribeToNotifications();
+    this.swPush.messages.subscribe((res) => {
+      console.log(';;;;;', res);
+    });
+    this.swPush.notificationClicks.subscribe((res) => {
+      window.open(res.notification.data.url);
+    });
   }
 
   fetchUsers() {
@@ -53,7 +64,7 @@ export class AppComponent implements OnInit {
         if (updateavailable && confirm('new update available')) {
           this.update.activateUpdate().then(() => location.reload());
         } else {
-          console.log('already new version available for app');
+          console.log('already new version available for app..');
         }
       });
     });
@@ -75,5 +86,16 @@ export class AppComponent implements OnInit {
         },
       ];
     });
+  }
+
+  subscribeToNotifications() {
+    this.swPush
+      .requestSubscription({
+        serverPublicKey: this.VAPID_PUBLIC_KEY,
+      })
+      .then((sub: any) => console.log('value for sub', sub))
+      .catch((err: any) =>
+        console.error('Could not subscribe to notifications', err)
+      );
   }
 }
